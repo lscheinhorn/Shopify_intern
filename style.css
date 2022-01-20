@@ -5,3 +5,13 @@ body {
   img, svg, video, audio {
     max-width: 100%;
   }
+
+  button {
+    display: block;
+    font-size: 18pt;
+    border-radius: 100px;
+    background: #339DFF;
+    color: #FFF;
+    border: 2px solid #D9EDFF;
+    padding: 3px 12px;
+  }
