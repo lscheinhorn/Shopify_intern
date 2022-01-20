@@ -76,7 +76,7 @@ const getNasaImages = () => {
                 likeButton.setAttribute("class", "far fa-heart fa-3x card-text");
                 likeButton.setAttribute("tabindex", "0");
                 likeButton.addEventListener("click", likeToggle);
-                likeButton.addEventListener("keydown", likeToggle);
+                likeButton.addEventListener("keypress", likeToggle);
 
                 likeButton.ariaLabel = "Like";
                 textCard.appendChild(likeButton);
