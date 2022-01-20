@@ -46,10 +46,14 @@ const getNasaImages = () => {
             if(!Array.isArray(data)) {
                 data = [data];
             }
-        
+            
+            let imagesElement = document.createElement("div");
+            imagesElement.setAttribute("id", "images");
+            document.getElementById("main").appendChild(imagesElement);
+
             //iterating through image objects to capture data
             data.forEach((imageObj) => {
-                console.log(imageObj)
+                //console.log(imageObj)
                 //create a div for image
                 let newDiv = document.createElement("div");
 
@@ -81,7 +85,7 @@ const getNasaImages = () => {
                 newDiv.appendChild(description);
                 
                 //append the new div to the 'main' section
-                document.getElementById("main").appendChild(newDiv);
+                document.getElementById("images").appendChild(newDiv);
             })
             
         })
@@ -89,10 +93,11 @@ const getNasaImages = () => {
 
 getNasaImages();
     
+
 const searchDate = () => {
-    console.log('search date function');
-    //date = "document.getElementById("date_input").value";
-    //count = 0;
-    document.getElementsByTagName("section")[0].remove;
-    //getNasaImages();
+    let imagesElement = document.getElementById("images");
+    imagesElement.remove();
+    date = document.getElementById("date_input").value;
+    count = 0;
+    getNasaImages();
 }
