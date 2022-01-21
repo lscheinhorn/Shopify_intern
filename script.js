@@ -30,8 +30,6 @@ const likeToggle = (event) => {
         event.target.ariaLabel = "unlike";                }
 }
 
-
-
 //makes http request for image data from apoc api
 const getNasaImages = () => {
     fetch(requestURL())
@@ -56,7 +54,6 @@ const getNasaImages = () => {
                 //create a div for image
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "col")
-
 
                 if(imageObj.media_type !== "image") {
                     console.log("There's a video here!");
@@ -89,17 +86,15 @@ const getNasaImages = () => {
                 //creating a like button
                 let likeButton = document.createElement("button");
                 likeButton.setAttribute("class", "far fa-heart fa-3x card-text");
-                likeButton.setAttribute("tabindex", "0");
+                likeButton.setAttribute("aria-hidden", "true");
                 likeButton.addEventListener("click", likeToggle);
-                likeButton.ariaLabel = "Like";
                 textCard.appendChild(likeButton);
-                
+        
                 //create and append the title to parent div
                 let title = document.createElement("h4");
                 title.setAttribute("class", "card-text");
                 title.innerText = imageObj.title;
                 title.setAttribute("tabindex", "0");
-
                 textCard.appendChild(title);
                 
                 //create and append the date to parent div
@@ -107,7 +102,6 @@ const getNasaImages = () => {
                 date.setAttribute("class", "card-text");
                 date.innerText = `Posted: ${imageObj.date}`;
                 date.setAttribute("tabindex", "0");
-
                 textCard.appendChild(date);
                 
                 //create and append the description to parent div
@@ -115,7 +109,6 @@ const getNasaImages = () => {
                 description.innerText = imageObj.explanation;
                 description.setAttribute("class", "card-text");
                 description.setAttribute("tabindex", "0");
-
                 textCard.appendChild(description);
                 
                 //append the new image div to the 'images' div
@@ -127,7 +120,7 @@ const getNasaImages = () => {
 
 getNasaImages();
     
-
+//fetches an image from a given date
 const searchDate = () => {
     let imagesElement = document.getElementById("images");
     imagesElement.remove();
