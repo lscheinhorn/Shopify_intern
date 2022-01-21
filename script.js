@@ -57,13 +57,29 @@ const getNasaImages = () => {
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "col")
 
-                //create and append the image to parent div
-                let img = document.createElement("img");
-                img.src = imageObj.url;
-                img.setAttribute("class", "card-img-top");
-                img.setAttribute("alt", `an image titled ${imageObj.title}`);
-                img.setAttribute("tabindex", "0");
-                newDiv.appendChild(img);
+
+                if(imageObj.media_type !== "image") {
+                    console.log("There's a video here!");
+                    let videoParent = document.createElement("div");
+                    videoParent.setAttribute("style", "position:relative;padding-top:56.25%")
+                    let video = document.createElement("iframe");
+                    videoParent.appendChild(video);
+                    video.setAttribute("frameborder", "0");
+                    video.setAttribute("allowfullscreen", "true");
+                    video.setAttribute("style", "position:absolute;top:0;left:0;width:100%;height:100%;");
+                    video.src = imageObj.url;
+                    video.setAttribute("tabindex", "0");
+                    newDiv.appendChild(videoParent);
+                } else {
+                    
+                    //create and append the image to parent div
+                    let img = document.createElement("img");
+                    img.src = imageObj.url;
+                    img.setAttribute("class", "card-img-top");
+                    img.setAttribute("alt", `an image titled ${imageObj.title}`);
+                    img.setAttribute("tabindex", "0");
+                    newDiv.appendChild(img);
+                }
 
                 //creating the text card
                 let textCard = document.createElement("div");
