@@ -70,14 +70,11 @@ const getNasaImages = () => {
                 textCard.setAttribute("class", "card-body");
                 newDiv.appendChild(textCard);
 
-                
                 //creating a like button
-                let likeButton = document.createElement("i");
+                let likeButton = document.createElement("button");
                 likeButton.setAttribute("class", "far fa-heart fa-3x card-text");
                 likeButton.setAttribute("tabindex", "0");
                 likeButton.addEventListener("click", likeToggle);
-                likeButton.addEventListener("keypress", likeToggle);
-
                 likeButton.ariaLabel = "Like";
                 textCard.appendChild(likeButton);
                 
