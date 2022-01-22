@@ -86,7 +86,7 @@ const getNasaImages = () => {
                 //creating a like button
                 let likeButton = document.createElement("button");
                 likeButton.setAttribute("class", "far fa-heart fa-3x card-text");
-                likeButton.setAttribute("aria-hidden", "true");
+                likeButton.setAttribute("aria-label", "like");
                 likeButton.addEventListener("click", likeToggle);
                 textCard.appendChild(likeButton);
         
