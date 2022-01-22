@@ -122,9 +122,14 @@ getNasaImages();
     
 //fetches an image from a given date
 const searchDate = () => {
+    date = document.getElementById("date_input").value;
+    if (!/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(date)) {
+        alert('Please enter a date in the format YYY-MM-DD')
+        return
+    }
     let imagesElement = document.getElementById("images");
     imagesElement.remove();
-    date = document.getElementById("date_input").value;
     count = 0;
     getNasaImages();
+    
 }
