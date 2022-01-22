@@ -23,11 +23,10 @@ const likeToggle = (event) => {
     if(event.target.classList.contains("fas")) {
         event.target.classList.remove("fas");
         event.target.classList.add("far");
-        event.target.ariaLabel = "like";
     } else {
         event.target.classList.remove("far");
         event.target.classList.add("fas");
-        event.target.ariaLabel = "unlike";                }
+    }
 }
 
 //makes http request for image data from apoc api
@@ -83,12 +82,29 @@ const getNasaImages = () => {
                 textCard.setAttribute("class", "card-body");
                 newDiv.appendChild(textCard);
 
+
+                let likeButtonSr = document.createElement("button");
+                likeButtonSr.setAttribute("aria-label", "like");
+                textCard.appendChild(likeButtonSr);
+
                 //creating a like button
-                let likeButton = document.createElement("button");
+                let likeButton = document.createElement("i");
                 likeButton.setAttribute("class", "far fa-heart fa-3x card-text");
-                likeButton.setAttribute("aria-label", "like");
                 likeButton.addEventListener("click", likeToggle);
-                textCard.appendChild(likeButton);
+                likeButtonSr.appendChild(likeButton);
+
+
+                likeButtonSr.addEventListener("keyup", function(event) {
+                    if (event.key === "Enter" || event.key === " ") {
+                        if(likeButtonSr.ariaLabel === "like") {
+                            likeButtonSr.ariaLabel = "unlike";
+                        } else {
+                            likeButtonSr.ariaLabel = "like";
+                        }
+                        event.preventDefault();
+                        likeButton.click();
+                    }
+                });
         
                 //create and append the title to parent div
                 let title = document.createElement("h4");
