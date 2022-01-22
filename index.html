@@ -28,7 +28,7 @@
                     <h1 class="fw-light" tabindex="0">NASA's Astronomy Photo of the Day - Randomizer</h1>
                     <p class="lead text-muted" tabindex="0">Hitting NASA's APOD API and presenting an assortment of beautiful space-themed images</p>
                     <h4 tabindex="0">Search for the APOD of a given date below</h4>
-                    <input id="date_input" placeholder="YYYY-MM-DD" required pattern="^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$" tabindex="0">
+                    <input id="date_input" placeholder="MM-DD-YYYY" required pattern="^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$" tabindex="0">
                     <button class="btn btn-primary my-2" id="search_date_button" onclick="searchDate()" onkeypress="searchDate()" aria-label="search date button" tabindex="0">search</button>
                     <button class="btn btn-secondary my-2" onclick="location.reload()" onkeypress="location.reload()" tabindex="0">refresh</button>
                 </div>

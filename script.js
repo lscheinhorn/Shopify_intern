@@ -120,16 +120,37 @@ const getNasaImages = () => {
 
 getNasaImages();
     
+//changes the date from conventional "MM-DD-YYYY" format to "YYYY-MM-DD" for API call
+const dateMutate = (oldDate) => {
+    let newDate = oldDate.split("");
+    newDate.push("-");
+    for(let i=0;i<5;i++) {
+      newDate.push(newDate.shift());
+    }
+    newDate.shift();
+    newDate = newDate.join("");
+    return newDate;
+  }
+
 //fetches an image from a given date
 const searchDate = () => {
-    date = document.getElementById("date_input").value;
+    let dateInput = document.getElementById("date_input").value;
+    date = dateMutate(dateInput);
     if (!/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(date)) {
-        alert('Please enter a date in the format YYY-MM-DD')
+        alert('Please enter a date in the format MM-DD-YYYY')
         return
     }
     let imagesElement = document.getElementById("images");
     imagesElement.remove();
     count = 0;
     getNasaImages();
-    
 }
+
+//adds event listener to date_input for enter key and clicks the search button
+let input = document.getElementById("date_input");
+input.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("search_date_button").click();
+    }
+});
