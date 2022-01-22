@@ -43,19 +43,21 @@ const getNasaImages = () => {
                 data = [data];
             }
             
+            //adding image element to main with styling
             let imagesElement = document.createElement("div");
             imagesElement.setAttribute("class", "row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3");
             imagesElement.setAttribute("id", "images");
             document.getElementById("main").appendChild(imagesElement);
 
+            let i = 0;
             //iterating through image objects to capture data
             data.forEach((imageObj) => {
                 //create a div for image
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "col")
 
-                if(imageObj.media_type !== "image") {
-                    console.log("There's a video here!");
+                //creating an iframe for video
+                if(imageObj.media_type === "video") {
                     let videoParent = document.createElement("div");
                     videoParent.setAttribute("style", "position:relative;padding-top:56.25%")
                     let video = document.createElement("iframe");
