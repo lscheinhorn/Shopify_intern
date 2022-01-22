@@ -122,9 +122,24 @@ getNasaImages();
     
 //fetches an image from a given date
 const searchDate = () => {
-    date = document.getElementById("date_input").value;
+    let dateInput = document.getElementById("date_input").value;
+    
+    //changes the date to a format that the API expects by converting from  "MM-DD-YYYY" to "YYYY-MM-DD" 
+    const dateMutate = (oldDate) => {
+        let newDate = oldDate.split("");
+        newDate.push("-");
+        for(let i=0;i<5;i++) {
+          newDate.push(newDate.shift());
+          console.log("loop", newDate);
+        }
+        newDate.shift();
+        newDate = newDate.join("");
+        console.log(newDate);
+        return newDate;
+      }
+    date = dateMutate(dateInput);
     if (!/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(date)) {
-        alert('Please enter a date in the format YYY-MM-DD')
+        alert('Please enter a date in the format MM-DD-YYYY')
         return
     }
     let imagesElement = document.getElementById("images");
