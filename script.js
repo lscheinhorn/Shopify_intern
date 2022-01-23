@@ -20,6 +20,8 @@ let requestURL = () => {
 
 //Changes like status
 const likeToggle = (event) => {
+    //prevents screen reader like button to be re-triggered
+    event.stopPropagation();
     if(event.target.classList.contains("fas")) {
         event.target.classList.remove("fas");
         event.target.classList.add("far");
@@ -49,7 +51,6 @@ const getNasaImages = () => {
             imagesElement.setAttribute("id", "images");
             document.getElementById("main").appendChild(imagesElement);
 
-            let i = 0;
             //iterating through image objects to capture data
             data.forEach((imageObj) => {
                 //create a div for image
@@ -84,7 +85,7 @@ const getNasaImages = () => {
                 textCard.setAttribute("class", "card-body");
                 newDiv.appendChild(textCard);
 
-
+                //create accessible like button
                 let likeButtonSr = document.createElement("button");
                 likeButtonSr.setAttribute("aria-label", "like");
                 likeButtonSr.setAttribute("aria-live", "polite");
@@ -96,17 +97,15 @@ const getNasaImages = () => {
                 likeButton.addEventListener("click", likeToggle);
                 likeButtonSr.appendChild(likeButton);
 
-
-                likeButtonSr.addEventListener("keyup", function(event) {
-                    if (event.key === "Enter" || event.key === " ") {
-                        if(likeButtonSr.ariaLabel === "like") {
-                            likeButtonSr.ariaLabel = "unlike";
-                        } else {
-                            likeButtonSr.ariaLabel = "like";
-                        }
-                        event.preventDefault();
-                        likeButton.click();
+                //toggles like button for screen readers
+                likeButtonSr.addEventListener("click", function(event) {
+                    if(likeButtonSr.ariaLabel === "like") {
+                        likeButtonSr.ariaLabel = "unlike";
+                    } else {
+                        likeButtonSr.ariaLabel = "like";
                     }
+                    event.preventDefault();
+                    likeButton.click();
                 });
         
                 //create and append the title to parent div
