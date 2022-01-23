@@ -20,8 +20,6 @@ let requestURL = () => {
 
 //Changes like status
 const likeToggle = (event) => {
-    //prevents screen reader like button to be re-triggered
-    event.stopPropagation();
     if(event.target.classList.contains("fas")) {
         event.target.classList.remove("fas");
         event.target.classList.add("far");
@@ -101,11 +99,13 @@ const getNasaImages = () => {
                 likeButtonSr.addEventListener("click", function(event) {
                     if(likeButtonSr.ariaLabel === "like") {
                         likeButtonSr.ariaLabel = "unlike";
+                        likeButton.classList.remove("far");
+                        likeButton.classList.add("fas");
                     } else {
                         likeButtonSr.ariaLabel = "like";
+                        likeButton.classList.remove("fas");
+                        likeButton.classList.add("far");
                     }
-                    event.preventDefault();
-                    likeButton.click();
                 });
         
                 //create and append the title to parent div
