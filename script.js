@@ -18,17 +18,6 @@ let requestURL = () => {
     return url;
 }
 
-//Changes like status
-const likeToggle = (event) => {
-    if(event.target.classList.contains("fas")) {
-        event.target.classList.remove("fas");
-        event.target.classList.add("far");
-    } else {
-        event.target.classList.remove("far");
-        event.target.classList.add("fas");
-    }
-}
-
 //makes http request for image data from apoc api
 const getNasaImages = () => {
     fetch(requestURL())
@@ -84,27 +73,26 @@ const getNasaImages = () => {
                 newDiv.appendChild(textCard);
 
                 //create accessible like button
-                let likeButtonSr = document.createElement("button");
-                likeButtonSr.setAttribute("aria-label", "like");
-                likeButtonSr.setAttribute("aria-live", "polite");
-                textCard.appendChild(likeButtonSr);
+                let likeButton = document.createElement("button");
+                likeButton.setAttribute("aria-label", "like");
+                likeButton.setAttribute("aria-live", "polite");
+                textCard.appendChild(likeButton);
 
-                //creating a like button
-                let likeButton = document.createElement("i");
-                likeButton.setAttribute("class", "far fa-heart fa-3x card-text");
-                likeButton.addEventListener("click", likeToggle);
-                likeButtonSr.appendChild(likeButton);
+                //creating a like button heart icon
+                let heart = document.createElement("i");
+                heart.setAttribute("class", "far fa-heart fa-3x card-text");
+                likeButton.appendChild(heart);
 
-                //toggles like button for screen readers
-                likeButtonSr.addEventListener("click", function(event) {
-                    if(likeButtonSr.ariaLabel === "like") {
-                        likeButtonSr.ariaLabel = "unlike";
-                        likeButton.classList.remove("far");
-                        likeButton.classList.add("fas");
+                //toggles like button
+                likeButton.addEventListener("click", function(event) {
+                    if(likeButton.ariaLabel === "like") {
+                        likeButton.ariaLabel = "unlike";
+                        heart.classList.remove("far");
+                        heart.classList.add("fas");
                     } else {
-                        likeButtonSr.ariaLabel = "like";
-                        likeButton.classList.remove("fas");
-                        likeButton.classList.add("far");
+                        likeButton.ariaLabel = "like";
+                        heart.classList.remove("fas");
+                        heart.classList.add("far");
                     }
                 });
         
