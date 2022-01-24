@@ -18,8 +18,13 @@ let requestURL = () => {
     return url;
 }
 
+const spinner = document.getElementById("spinner");
+
 //makes http request for image data from apoc api
 const getNasaImages = () => {
+    
+    spinner.removeAttribute('hidden');
+
     fetch(requestURL())
         .then((response) => {
         
@@ -27,6 +32,9 @@ const getNasaImages = () => {
             return response.json()
         })
         .then((data) => {
+
+            spinner.setAttribute('hidden', '');
+
             //puts object with one image in an array to perform .forEach()
             if(!Array.isArray(data)) {
                 data = [data];
