@@ -77,7 +77,7 @@ const getNasaImages = () => {
                 let likeButton = document.createElement("button");
                 likeButton.setAttribute("aria-label", "like");
                 likeButton.setAttribute("aria-live", "polite");
-                likeButton.setAttribute("class", "round");
+                likeButton.setAttribute("class", "heart");
                 textCard.appendChild(likeButton);
 
                 //creating a like button heart icon
