@@ -1,13 +1,53 @@
 body {
-    font-family: "HelveticaNeue", "Helvetica", Arial, sans-serif;
-  }
-  
-  img, svg, video, audio {
-    max-width: 100%;
-  }
+  font-family: "HelveticaNeue", "Helvetica", Arial, sans-serif;
+  background-image: url(resources/kai-pilger-Ef6iL87-vOA-unsplash.jpg);
+  background-repeat: "no repeat";
+  background-attachment: fixed;
+}
 
-  button{
-    border: none;
-  }
+button{
+  border: none;
+}
+
+img, svg, video, audio {
+  max-width: 100%;
+}
+
+.card-text.light-text {
+  color: hsl(218,86%,90%);
+}
+
+.nasa-blue-text {
+  color: hsl(218,86%,70%);
+}
+
+.round {
+  border-radius: 10%;
+  background-color: rgba(208, 224, 251, 0.2);
+}
+
+.transparent {
+  background-color: rgba(0,0,0,0) !important;
+}
+
+.transparent.bg-dark {
+  background-color: rgba(0,0,0,0) !important;
+}
+
+.transparent.bg-light {
+  background-color: rgba(0,0,0,0) !important;
+}
+
+
+
+
+
+
+
+ 
+
+  
+
+
 
  
