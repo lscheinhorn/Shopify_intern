@@ -5,8 +5,10 @@ body {
   background-attachment: fixed;
 }
 
-button{
+button.heart{
   border: none;
+  color: rgb(247, 111, 111);
+  background-color: transparent;
 }
 
 img, svg, video, audio {
@@ -19,11 +21,6 @@ img, svg, video, audio {
 
 .nasa-blue-text {
   color: hsl(218,86%,70%);
-}
-
-.round {
-  border-radius: 10%;
-  background-color: rgba(208, 224, 251, 0.2);
 }
 
 .transparent {
