@@ -35,16 +35,8 @@ img, svg, video, audio {
   background-color: rgba(0,0,0,0) !important;
 }
 
-
-
-
-
-
-
- 
-
-  
-
-
-
- 
+#spinner {
+  display: flex;
+  justify-content: center;
+  color: white;
+}
