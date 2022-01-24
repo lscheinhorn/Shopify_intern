@@ -44,6 +44,7 @@ const getNasaImages = () => {
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "col")
 
+
                 //creating an iframe for video
                 if(imageObj.media_type === "video") {
                     let videoParent = document.createElement("div");
@@ -76,11 +77,12 @@ const getNasaImages = () => {
                 let likeButton = document.createElement("button");
                 likeButton.setAttribute("aria-label", "like");
                 likeButton.setAttribute("aria-live", "polite");
+                likeButton.setAttribute("class", "round");
                 textCard.appendChild(likeButton);
 
                 //creating a like button heart icon
                 let heart = document.createElement("i");
-                heart.setAttribute("class", "far fa-heart fa-3x card-text");
+                heart.setAttribute("class", "far fa-heart fa-3x");
                 likeButton.appendChild(heart);
 
                 //toggles like button
@@ -98,14 +100,14 @@ const getNasaImages = () => {
         
                 //create and append the title to parent div
                 let title = document.createElement("h4");
-                title.setAttribute("class", "card-text");
+                title.setAttribute("class", "card-text light-text");
                 title.innerText = imageObj.title;
                 title.setAttribute("tabindex", "0");
                 textCard.appendChild(title);
                 
                 //create and append the date to parent div
                 let date = document.createElement("p");
-                date.setAttribute("class", "card-text");
+                date.setAttribute("class", "card-text light-text");
                 date.innerText = `Posted: ${imageObj.date}`;
                 date.setAttribute("tabindex", "0");
                 textCard.appendChild(date);
@@ -113,7 +115,7 @@ const getNasaImages = () => {
                 //create and append the description to parent div
                 let description = document.createElement("p");
                 description.innerText = imageObj.explanation;
-                description.setAttribute("class", "card-text");
+                description.setAttribute("class", "card-text light-text");
                 description.setAttribute("tabindex", "0");
                 textCard.appendChild(description);
                 
