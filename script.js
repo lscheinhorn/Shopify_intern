@@ -52,7 +52,6 @@ const getNasaImages = () => {
                 let newDiv = document.createElement("div");
                 newDiv.setAttribute("class", "col")
 
-
                 //creating an iframe for video
                 if(imageObj.media_type === "video") {
                     let videoParent = document.createElement("div");
@@ -81,20 +80,17 @@ const getNasaImages = () => {
                 textCard.setAttribute("class", "card-body");
                 newDiv.appendChild(textCard);
 
-                //create accessible like button
-                let likeButton = document.createElement("button");
-                likeButton.setAttribute("aria-label", "like");
-                likeButton.setAttribute("aria-live", "polite");
-                likeButton.setAttribute("class", "heart");
-                textCard.appendChild(likeButton);
-
-                //creating a like button heart icon
-                let heart = document.createElement("i");
-                heart.setAttribute("class", "far fa-heart fa-3x");
-                likeButton.appendChild(heart);
+                //This function will be called on keyboard focus to add aria-label to live region. If aria-live regions have content on load, screen readers will announce all live regions. If aria-live regions are created dynamically, screen readers will not recognize them. Thus, aria-live regions must be created with no aria content.
+                const addAriaLabel = (event) => {
+                    if(!event.target.hasAttribute("aria-label")){
+                        console.log("on focus function")
+                        event.target.setAttribute("aria-label", "like");
+                    }
+                }
 
                 //toggles like button
-                likeButton.addEventListener("click", function(event) {
+                const likeToggle = (event) => {
+                    event.stopPropagation();
                     if(likeButton.ariaLabel === "like") {
                         likeButton.ariaLabel = "unlike";
                         heart.classList.remove("far");
@@ -104,8 +100,22 @@ const getNasaImages = () => {
                         heart.classList.remove("fas");
                         heart.classList.add("far");
                     }
-                });
-        
+                }
+
+                //create accessible like button
+                let likeButton = document.createElement("button");
+                likeButton.setAttribute("class", "heart");
+                likeButton.setAttribute("aria-live", "polite");
+                likeButton.addEventListener("focus", addAriaLabel);
+                likeButton.addEventListener("click", likeToggle);
+                textCard.appendChild(likeButton);
+
+                //creating a like button heart icon
+                let heart = document.createElement("i");
+                heart.setAttribute("class", "far fa-heart fa-3x");
+                heart.addEventListener("click", likeToggle);
+                likeButton.appendChild(heart);
+
                 //create and append the title to parent div
                 let title = document.createElement("h4");
                 title.setAttribute("class", "card-text light-text");
@@ -131,6 +141,16 @@ const getNasaImages = () => {
                 document.getElementById("images").appendChild(newDiv);
             })
             
+        })
+
+        .catch((error) => {
+            spinner.setAttribute('hidden', '');
+            const errorDiv = document.createElement("div");
+            errorDiv.setAttribute("id", "error");
+            errorDiv.setAttribute("tabindex", "1");
+            errorDiv.innerText = "We're sorry!\r\nThe server is not responding\r\nPlease try again";
+            document.getElementById("main").appendChild(errorDiv);
+            console.error("There was an error", error);
         })
     }
 
