@@ -84,7 +84,7 @@ const getNasaImages = () => {
                 //create accessible like button
                 let likeButton = document.createElement("button");
                 likeButton.setAttribute("aria-label", "like");
-                likeButton.setAttribute("aria-live", "polite");
+                //likeButton.setAttribute("aria-live", "polite");
                 likeButton.setAttribute("class", "heart");
                 textCard.appendChild(likeButton);
 
@@ -97,10 +97,13 @@ const getNasaImages = () => {
                 likeButton.addEventListener("click", function(event) {
                     if(likeButton.ariaLabel === "like") {
                         likeButton.ariaLabel = "unlike";
+                        Drupal.announce("unlike");
                         heart.classList.remove("far");
                         heart.classList.add("fas");
                     } else {
                         likeButton.ariaLabel = "like";
+                        Drupal.announce("like");
+
                         heart.classList.remove("fas");
                         heart.classList.add("far");
                     }
@@ -131,6 +134,16 @@ const getNasaImages = () => {
                 document.getElementById("images").appendChild(newDiv);
             })
             
+        })
+
+        .catch((error) => {
+            spinner.setAttribute('hidden', '');
+            const errorDiv = document.createElement("div");
+            errorDiv.setAttribute("id", "error");
+            errorDiv.setAttribute("tabindex", "1");
+            errorDiv.innerText = "We're sorry!\r\nThe server is not responding\r\nPlease try again";
+            document.getElementById("main").appendChild(errorDiv);
+            console.error("There was an error", error);
         })
     }
 
