@@ -174,16 +174,19 @@ const dateMutate = (oldDate) => {
 
 //fetches an image from a given date
 const searchDate = () => {
-    let dateInput = document.getElementById("date_input").value;
+    let inputElement = document.getElementById("date_input")
+    let dateInput = inputElement.value;
     date = dateMutate(dateInput);
     if (!/^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(date)) {
-        alert('Please enter a date in the format MM-DD-YYYY')
-        return
+        alert('Please enter a date in the format MM-DD-YYYY');
+        inputElement.value = "";
+        return;
     }
     let imagesElement = document.getElementById("images");
     imagesElement.remove();
     count = 0;
     getNasaImages();
+    inputElement.value = "";
 }
 
 //adds event listener to date_input for enter key and clicks the search button
