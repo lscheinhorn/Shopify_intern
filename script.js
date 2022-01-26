@@ -68,11 +68,16 @@ const getNasaImages = () => {
                     
                     //create and append the image to parent div
                     let img = document.createElement("img");
+                    let imgLink = document.createElement("a");
+                    imgLink.setAttribute("href", imageObj.hdurl);
+                    imgLink.setAttribute("target", "blank");
+                    img.setAttribute("aria-label", `${imageObj.title}, image, link`);
                     img.src = imageObj.url;
                     img.setAttribute("class", "card-img-top");
-                    img.setAttribute("alt", `an image titled ${imageObj.title}`);
-                    img.setAttribute("tabindex", "0");
-                    newDiv.appendChild(img);
+                    img.setAttribute("alt", ``);
+                    imgLink.setAttribute("tabindex", "0");
+                    imgLink.appendChild(img);
+                    newDiv.appendChild(imgLink);
                 }
 
                 //creating the text card
@@ -83,7 +88,6 @@ const getNasaImages = () => {
                 //This function will be called on keyboard focus to add aria-label to live region. If aria-live regions have content on load, screen readers will announce all live regions. If aria-live regions are created dynamically, screen readers will not recognize them. Thus, aria-live regions must be created with no aria content.
                 const addAriaLabel = (event) => {
                     if(!event.target.hasAttribute("aria-label")){
-                        console.log("on focus function")
                         event.target.setAttribute("aria-label", "like");
                     }
                 }
