@@ -5,7 +5,7 @@ const info = {
 }
 
 //stores api parameters and builds request URL
-let count = 12;
+let count = 1;
 let date;
 let requestURL = () => {
     let url = `https://api.nasa.gov/planetary/apod?api_key=${info.API_KEY}`;
@@ -32,8 +32,13 @@ const getNasaImages = () => {
             return response.json()
         })
         .then((data) => {
-
+            console.log('json response', data);
             spinner.setAttribute('hidden', '');
+
+            //nasa apod api has been returning an object with an error code
+            if(data.code){
+                throw new Error(`Code: ${data.code}`)
+            }
 
             //puts object with one image in an array to perform .forEach()
             if(!Array.isArray(data)) {
