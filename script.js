@@ -5,7 +5,7 @@ const info = {
 }
 
 //stores api parameters and builds request URL
-let count = 1;
+let count = 12;
 let date;
 let requestURL = () => {
     let url = `https://api.nasa.gov/planetary/apod?api_key=${info.API_KEY}`;
@@ -188,8 +188,12 @@ const searchDate = () => {
         return;
     }
     let imagesElement = document.getElementById("images");
-    imagesElement.remove();
-    count = 0;
+    if(imagesElement) {
+        imagesElement.remove();
+    }
+    if(document.getElementById("error")) {
+        document.getElementById("error").remove();
+    }
     getNasaImages();
     inputElement.value = "";
 }
